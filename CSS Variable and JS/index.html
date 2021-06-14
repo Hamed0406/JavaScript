@@ -18,7 +18,7 @@
     <input id="base" type="color" name="base" value="#ffc600">
   </div>
 
-  <img  class=image src="https://thispersondoesnotexist.com/image">
+  <img   src="https://thispersondoesnotexist.com/image">
 
   <style>
     :root {
@@ -45,10 +45,9 @@ The varible should defined as root at begging of style
 
     */
 
-    .image {
-      width: 800px;
-height: 800px   
- }
+
+
+
 
     body {
       text-align: center;
@@ -74,6 +73,8 @@ const inputs = document.querySelectorAll('.controls input');
 
 function handelupdate() {
   const suffix=this.dataset.sizing || '';
+  document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
   console.log(suffix);
 }
     inputs.forEach(input=> input.addEventListener('change',handelupdate));
