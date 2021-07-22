@@ -1,10 +1,10 @@
-let firtCard = getRndInteger();
-let secondCard = getRndInteger();
+let firtCard = getRndCard();
+let secondCard = getRndCard();
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = false;
 let cards=[firtCard,secondCard]
 
-let sum = firtCard + secondCard;
+let sum = firtCard+secondCard;
 let message = "";
 
 let messageEl = document.getElementById("message-el");
@@ -18,8 +18,11 @@ console.log(cardEl);
 
 function renderGame() {
 
+  isAlive=true
+
   cardEl.textContent="Cards: "
   for (let index = 0; index < cards.length; index++) {
+
     cardEl.textContent+= cards[index]+" ";
     
   }
@@ -39,8 +42,19 @@ function renderGame() {
   messageEl.textContent = message;
 }
 
-function getRndInteger() {
-  return Math.floor(Math.random() * (11 - 2 + 2)) + 2;
+function getRndCard() {
+let randomCard=Math.floor(Math.random()*13)+1
+if(randomCard>10)
+{
+  return 10
+}
+else if(randomCard=== 1)
+{
+  return 11
+}else 
+{
+  return randomCard
+}
 }
 
 
@@ -48,7 +62,7 @@ function newCard()
 {
     if(sum<=21 && !hasBlackJack)
     {
-    let newCardDrawed=getRndInteger()
+    let newCardDrawed=getRndCard()
     cards.push(newCardDrawed)
     sum+=newCardDrawed
     renderGame()
